@@ -22,7 +22,6 @@ A:\CodeFolder\Unity\dotamaniagithubpages\dotamania-server\ServerDotaMania\Server
 A:\CodeFolder\Unity\dotamaniagithubpages\dotamania-server\ServerDotaMania\ServerDotaMania\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.ServerDotaMania.props
 A:\CodeFolder\Unity\dotamaniagithubpages\dotamania-server\ServerDotaMania\ServerDotaMania\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.ServerDotaMania.props
 A:\CodeFolder\Unity\dotamaniagithubpages\dotamania-server\ServerDotaMania\ServerDotaMania\obj\Debug\net8.0\staticwebassets.pack.json
-A:\CodeFolder\Unity\dotamaniagithubpages\dotamania-server\ServerDotaMania\ServerDotaMania\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 A:\CodeFolder\Unity\dotamaniagithubpages\dotamania-server\ServerDotaMania\ServerDotaMania\obj\Debug\net8.0\ServerDotaMania.dll
 A:\CodeFolder\Unity\dotamaniagithubpages\dotamania-server\ServerDotaMania\ServerDotaMania\obj\Debug\net8.0\refint\ServerDotaMania.dll
 A:\CodeFolder\Unity\dotamaniagithubpages\dotamania-server\ServerDotaMania\ServerDotaMania\obj\Debug\net8.0\ServerDotaMania.pdb
