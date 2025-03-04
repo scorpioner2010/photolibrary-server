@@ -7,7 +7,8 @@ public class HelloController : ControllerBase
     [HttpGet]
     public IActionResult Get()
     {
-        return Ok(new { message = "11111122222!" });
+        //http://localhost:51754/api //for check server
+        return Ok(new { message = "Server work OK!" });
     }
 
     [HttpPost]
@@ -19,13 +20,24 @@ public class HelloController : ControllerBase
         }
 
         // Формуємо відповідь залежно від отриманого меседжа
-        string responseMessage = request.message switch
+        string responseMessage;
+        
+        if (request.message == "1")
         {
-            "1" => "111!",
-            "2" => "222!",
-            "3" => "333",
-            _ => "I don't understand this message."
-        };
+            responseMessage = "111!";
+        }
+        else if (request.message == "2")
+        {
+            responseMessage = "222!";
+        }
+        else if (request.message == "3")
+        {
+            responseMessage = "333";
+        }
+        else
+        {
+            responseMessage = "Error!";
+        }
 
         return Ok(new { message = responseMessage });
     }
