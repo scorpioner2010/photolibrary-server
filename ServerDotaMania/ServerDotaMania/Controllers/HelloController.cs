@@ -7,7 +7,8 @@ public class HelloController : ControllerBase
     [HttpGet]
     public IActionResult Get()
     {
-        //http://localhost:51754/api //for check server
+        //http://localhost:51754/api //for check server local
+        //https://dotamania.bsite.net/api //for check server global
         return Ok(new { message = "Server work OK!" });
     }
 
