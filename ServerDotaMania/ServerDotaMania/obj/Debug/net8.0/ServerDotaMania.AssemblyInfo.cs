@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ServerDotaMania")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5ee6565c745f8e3f8d7aebb38db4f2a01fc73769")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+447ea21a776fd4ee984ba59c345bb8bb66b1307a")]
 [assembly: System.Reflection.AssemblyProductAttribute("ServerDotaMania")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ServerDotaMania")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

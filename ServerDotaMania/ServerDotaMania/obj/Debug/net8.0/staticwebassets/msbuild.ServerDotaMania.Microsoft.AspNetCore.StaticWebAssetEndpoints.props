@@ -4,25 +4,25 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\containers\222\description.txt'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"5kt3gol49k"},{"Name":"integrity","Value":"sha256-m4cVEjJ8Cc6R3WSbP5amO3QI7yZ8jMVxARTmKXMMth8="},{"Name":"label","Value":"_content/ServerDotaMania/containers/222/description.txt"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"3"},{"Name":"Content-Type","Value":"text/plain"},{"Name":"ETag","Value":"\u0022m4cVEjJ8Cc6R3WSbP5amO3QI7yZ8jMVxARTmKXMMth8=\u0022"},{"Name":"Last-Modified","Value":"Fri, 07 Mar 2025 17:45:45 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"3"},{"Name":"Content-Type","Value":"text/plain"},{"Name":"ETag","Value":"\u0022m4cVEjJ8Cc6R3WSbP5amO3QI7yZ8jMVxARTmKXMMth8=\u0022"},{"Name":"Last-Modified","Value":"Fri, 07 Mar 2025 18:16:06 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/ServerDotaMania/containers/222/description.txt">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\containers\222\description.txt'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-m4cVEjJ8Cc6R3WSbP5amO3QI7yZ8jMVxARTmKXMMth8="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"3"},{"Name":"Content-Type","Value":"text/plain"},{"Name":"ETag","Value":"\u0022m4cVEjJ8Cc6R3WSbP5amO3QI7yZ8jMVxARTmKXMMth8=\u0022"},{"Name":"Last-Modified","Value":"Fri, 07 Mar 2025 17:45:45 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"3"},{"Name":"Content-Type","Value":"text/plain"},{"Name":"ETag","Value":"\u0022m4cVEjJ8Cc6R3WSbP5amO3QI7yZ8jMVxARTmKXMMth8=\u0022"},{"Name":"Last-Modified","Value":"Fri, 07 Mar 2025 18:16:06 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/ServerDotaMania/containers/222/sprite.iwqv9ja3dj.png">
+    <StaticWebAssetEndpoint Include="_content/ServerDotaMania/containers/222/sprite.3424ae7k4b.png">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\containers\222\sprite.png'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"iwqv9ja3dj"},{"Name":"integrity","Value":"sha256-DjG\u002BNeBb7oyUtwD0tyQE2Fogi2gUee\u002BERd5LDMl75mY="},{"Name":"label","Value":"_content/ServerDotaMania/containers/222/sprite.png"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"36345"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022DjG\u002BNeBb7oyUtwD0tyQE2Fogi2gUee\u002BERd5LDMl75mY=\u0022"},{"Name":"Last-Modified","Value":"Fri, 07 Mar 2025 17:45:45 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"3424ae7k4b"},{"Name":"integrity","Value":"sha256-s5U\u002BC\u002Bi96XYw634e6Uo08IzECIld3RJEoplY712j6kA="},{"Name":"label","Value":"_content/ServerDotaMania/containers/222/sprite.png"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"195"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022s5U\u002BC\u002Bi96XYw634e6Uo08IzECIld3RJEoplY712j6kA=\u0022"},{"Name":"Last-Modified","Value":"Fri, 07 Mar 2025 18:16:06 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/ServerDotaMania/containers/222/sprite.png">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\containers\222\sprite.png'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-DjG\u002BNeBb7oyUtwD0tyQE2Fogi2gUee\u002BERd5LDMl75mY="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"36345"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022DjG\u002BNeBb7oyUtwD0tyQE2Fogi2gUee\u002BERd5LDMl75mY=\u0022"},{"Name":"Last-Modified","Value":"Fri, 07 Mar 2025 17:45:45 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-s5U\u002BC\u002Bi96XYw634e6Uo08IzECIld3RJEoplY712j6kA="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"195"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022s5U\u002BC\u002Bi96XYw634e6Uo08IzECIld3RJEoplY712j6kA=\u0022"},{"Name":"Last-Modified","Value":"Fri, 07 Mar 2025 18:16:06 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
   </ItemGroup>
 </Project>

@@ -30,8 +30,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>iwqv9ja3dj</Fingerprint>
-      <Integrity>DjG+NeBb7oyUtwD0tyQE2Fogi2gUee+ERd5LDMl75mY=</Integrity>
+      <Fingerprint>3424ae7k4b</Fingerprint>
+      <Integrity>s5U+C+i96XYw634e6Uo08IzECIld3RJEoplY712j6kA=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\containers\222\sprite.png'))</OriginalItemSpec>

@@ -10,4 +10,8 @@
     <_ContentIncludedByDefault Remove="wwwroot\uploads\sprite.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\containers\" />
+  </ItemGroup>
+
 </Project>

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "U8SY/n+32AKzCR4hxE7M//YHXZuzp4eyFrF8HCk/7bY=",
+  "Hash": "pFOELJmNSzW0k+NvTc/cjNYrYIuABHIhODficuQDLmg=",
   "Source": "ServerDotaMania",
   "BasePath": "_content/ServerDotaMania",
   "Mode": "Default",
@@ -52,8 +52,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "iwqv9ja3dj",
-      "Integrity": "DjG+NeBb7oyUtwD0tyQE2Fogi2gUee+ERd5LDMl75mY=",
+      "Fingerprint": "3424ae7k4b",
+      "Integrity": "s5U+C+i96XYw634e6Uo08IzECIld3RJEoplY712j6kA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\containers\\222\\sprite.png"
@@ -83,7 +83,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 07 Mar 2025 17:45:45 GMT"
+          "Value": "Fri, 07 Mar 2025 18:16:06 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -128,7 +128,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 07 Mar 2025 17:45:45 GMT"
+          "Value": "Fri, 07 Mar 2025 18:16:06 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "Route": "containers/222/sprite.iwqv9ja3dj.png",
+      "Route": "containers/222/sprite.3424ae7k4b.png",
       "AssetFile": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\wwwroot\\containers\\222\\sprite.png",
       "Selectors": [],
       "ResponseHeaders": [
@@ -153,7 +153,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "36345"
+          "Value": "195"
         },
         {
           "Name": "Content-Type",
@@ -161,11 +161,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"DjG+NeBb7oyUtwD0tyQE2Fogi2gUee+ERd5LDMl75mY=\""
+          "Value": "\"s5U+C+i96XYw634e6Uo08IzECIld3RJEoplY712j6kA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 07 Mar 2025 17:45:45 GMT"
+          "Value": "Fri, 07 Mar 2025 18:16:06 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -175,7 +175,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "iwqv9ja3dj"
+          "Value": "3424ae7k4b"
         },
         {
           "Name": "label",
@@ -183,7 +183,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-DjG+NeBb7oyUtwD0tyQE2Fogi2gUee+ERd5LDMl75mY="
+          "Value": "sha256-s5U+C+i96XYw634e6Uo08IzECIld3RJEoplY712j6kA="
         }
       ]
     },
@@ -198,7 +198,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "36345"
+          "Value": "195"
         },
         {
           "Name": "Content-Type",
@@ -206,11 +206,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"DjG+NeBb7oyUtwD0tyQE2Fogi2gUee+ERd5LDMl75mY=\""
+          "Value": "\"s5U+C+i96XYw634e6Uo08IzECIld3RJEoplY712j6kA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 07 Mar 2025 17:45:45 GMT"
+          "Value": "Fri, 07 Mar 2025 18:16:06 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -220,7 +220,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-DjG+NeBb7oyUtwD0tyQE2Fogi2gUee+ERd5LDMl75mY="
+          "Value": "sha256-s5U+C+i96XYw634e6Uo08IzECIld3RJEoplY712j6kA="
         }
       ]
     }
