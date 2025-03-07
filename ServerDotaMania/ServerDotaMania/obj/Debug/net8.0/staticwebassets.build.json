@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "CATrXVyQoPoPI3C191jGkp0Xad8bSJvFH3WXSzJLMZk=",
+  "Hash": "U8SY/n+32AKzCR4hxE7M//YHXZuzp4eyFrF8HCk/7bY=",
   "Source": "ServerDotaMania",
   "BasePath": "_content/ServerDotaMania",
   "Mode": "Default",
@@ -17,12 +17,33 @@
   ],
   "Assets": [
     {
-      "Identity": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\wwwroot\\uploads\\sprite.png",
+      "Identity": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\wwwroot\\containers\\222\\description.txt",
       "SourceId": "ServerDotaMania",
       "SourceType": "Discovered",
       "ContentRoot": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\wwwroot\\",
       "BasePath": "_content/ServerDotaMania",
-      "RelativePath": "uploads/sprite#[.{fingerprint}]?.png",
+      "RelativePath": "containers/222/description#[.{fingerprint}]?.txt",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "5kt3gol49k",
+      "Integrity": "m4cVEjJ8Cc6R3WSbP5amO3QI7yZ8jMVxARTmKXMMth8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\containers\\222\\description.txt"
+    },
+    {
+      "Identity": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\wwwroot\\containers\\222\\sprite.png",
+      "SourceId": "ServerDotaMania",
+      "SourceType": "Discovered",
+      "ContentRoot": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\wwwroot\\",
+      "BasePath": "_content/ServerDotaMania",
+      "RelativePath": "containers/222/sprite#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -35,13 +56,95 @@
       "Integrity": "DjG+NeBb7oyUtwD0tyQE2Fogi2gUee+ERd5LDMl75mY=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\sprite.png"
+      "OriginalItemSpec": "wwwroot\\containers\\222\\sprite.png"
     }
   ],
   "Endpoints": [
     {
-      "Route": "uploads/sprite.iwqv9ja3dj.png",
-      "AssetFile": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\wwwroot\\uploads\\sprite.png",
+      "Route": "containers/222/description.5kt3gol49k.txt",
+      "AssetFile": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\wwwroot\\containers\\222\\description.txt",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"m4cVEjJ8Cc6R3WSbP5amO3QI7yZ8jMVxARTmKXMMth8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 07 Mar 2025 17:45:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5kt3gol49k"
+        },
+        {
+          "Name": "label",
+          "Value": "containers/222/description.txt"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-m4cVEjJ8Cc6R3WSbP5amO3QI7yZ8jMVxARTmKXMMth8="
+        }
+      ]
+    },
+    {
+      "Route": "containers/222/description.txt",
+      "AssetFile": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\wwwroot\\containers\\222\\description.txt",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"m4cVEjJ8Cc6R3WSbP5amO3QI7yZ8jMVxARTmKXMMth8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 07 Mar 2025 17:45:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-m4cVEjJ8Cc6R3WSbP5amO3QI7yZ8jMVxARTmKXMMth8="
+        }
+      ]
+    },
+    {
+      "Route": "containers/222/sprite.iwqv9ja3dj.png",
+      "AssetFile": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\wwwroot\\containers\\222\\sprite.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -62,7 +165,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 07 Mar 2025 16:33:21 GMT"
+          "Value": "Fri, 07 Mar 2025 17:45:45 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -76,7 +179,7 @@
         },
         {
           "Name": "label",
-          "Value": "uploads/sprite.png"
+          "Value": "containers/222/sprite.png"
         },
         {
           "Name": "integrity",
@@ -85,8 +188,8 @@
       ]
     },
     {
-      "Route": "uploads/sprite.png",
-      "AssetFile": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\wwwroot\\uploads\\sprite.png",
+      "Route": "containers/222/sprite.png",
+      "AssetFile": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\wwwroot\\containers\\222\\sprite.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -107,7 +210,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 07 Mar 2025 16:33:21 GMT"
+          "Value": "Fri, 07 Mar 2025 17:45:45 GMT"
         },
         {
           "Name": "Cache-Control",
