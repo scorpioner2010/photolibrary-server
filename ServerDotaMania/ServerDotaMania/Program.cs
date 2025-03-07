@@ -12,7 +12,7 @@ builder.Services.AddCors(options =>
 // Додаємо контролери
 builder.Services.AddControllers();
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 // Включаємо CORS
 app.UseCors("AllowAll");
