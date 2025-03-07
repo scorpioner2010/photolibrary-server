@@ -1,12 +1,125 @@
 {
   "Version": 1,
-  "Hash": "YmNNgjCcDtOtDWFFB7kig1bSt5jRKhat1raJfPvwJzs=",
+  "Hash": "CATrXVyQoPoPI3C191jGkp0Xad8bSJvFH3WXSzJLMZk=",
   "Source": "ServerDotaMania",
   "BasePath": "_content/ServerDotaMania",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "ServerDotaMania\\wwwroot",
+      "Source": "ServerDotaMania",
+      "ContentRoot": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\wwwroot\\",
+      "BasePath": "_content/ServerDotaMania",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\wwwroot\\uploads\\sprite.png",
+      "SourceId": "ServerDotaMania",
+      "SourceType": "Discovered",
+      "ContentRoot": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\wwwroot\\",
+      "BasePath": "_content/ServerDotaMania",
+      "RelativePath": "uploads/sprite#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "iwqv9ja3dj",
+      "Integrity": "DjG+NeBb7oyUtwD0tyQE2Fogi2gUee+ERd5LDMl75mY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\sprite.png"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "uploads/sprite.iwqv9ja3dj.png",
+      "AssetFile": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\wwwroot\\uploads\\sprite.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "36345"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DjG+NeBb7oyUtwD0tyQE2Fogi2gUee+ERd5LDMl75mY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 07 Mar 2025 16:33:21 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "iwqv9ja3dj"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/sprite.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-DjG+NeBb7oyUtwD0tyQE2Fogi2gUee+ERd5LDMl75mY="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/sprite.png",
+      "AssetFile": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\wwwroot\\uploads\\sprite.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "36345"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DjG+NeBb7oyUtwD0tyQE2Fogi2gUee+ERd5LDMl75mY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 07 Mar 2025 16:33:21 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-DjG+NeBb7oyUtwD0tyQE2Fogi2gUee+ERd5LDMl75mY="
+        }
+      ]
+    }
+  ]
 }

@@ -1,5 +1,10 @@
 var builder = WebApplication.CreateBuilder(args);
 
+// Налаштування логування: очищення стандартних провайдерів і додавання нашого логера та консолі
+builder.Logging.ClearProviders();
+builder.Logging.AddProvider(new MyInMemoryLoggerProvider());
+builder.Logging.AddConsole();
+
 // Додаємо CORS
 builder.Services.AddCors(options =>
 {
@@ -12,7 +17,7 @@ builder.Services.AddCors(options =>
 // Додаємо контролери
 builder.Services.AddControllers();
 
-WebApplication app = builder.Build();
+var app = builder.Build();
 
 // Включаємо CORS
 app.UseCors("AllowAll");
@@ -22,5 +27,11 @@ app.UseAuthorization();
 
 // Додаємо маршрутизацію для API
 app.MapControllers();
+
+// Додаємо endpoint для отримання логів
+app.MapGet("/logs", () =>
+{
+    return MyInMemoryLogger.GetLogs();
+});
 
 app.Run();

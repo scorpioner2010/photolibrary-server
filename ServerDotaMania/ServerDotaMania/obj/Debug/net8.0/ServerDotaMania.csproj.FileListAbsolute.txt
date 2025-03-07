@@ -27,3 +27,4 @@ A:\CodeFolder\Unity\dotamaniagithubpages\dotamania-server\ServerDotaMania\Server
 A:\CodeFolder\Unity\dotamaniagithubpages\dotamania-server\ServerDotaMania\ServerDotaMania\obj\Debug\net8.0\ServerDotaMania.pdb
 A:\CodeFolder\Unity\dotamaniagithubpages\dotamania-server\ServerDotaMania\ServerDotaMania\obj\Debug\net8.0\ServerDotaMania.genruntimeconfig.cache
 A:\CodeFolder\Unity\dotamaniagithubpages\dotamania-server\ServerDotaMania\ServerDotaMania\obj\Debug\net8.0\ref\ServerDotaMania.dll
+A:\CodeFolder\Unity\dotamaniagithubpages\dotamania-server\ServerDotaMania\ServerDotaMania\bin\Debug\net8.0\ServerDotaMania.staticwebassets.runtime.json

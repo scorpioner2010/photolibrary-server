@@ -1,5 +1,88 @@
 {
   "Version": 1,
   "ManifestType": "Build",
-  "Endpoints": []
+  "Endpoints": [
+    {
+      "Route": "uploads/sprite.iwqv9ja3dj.png",
+      "AssetFile": "uploads/sprite.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "36345"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DjG+NeBb7oyUtwD0tyQE2Fogi2gUee+ERd5LDMl75mY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 07 Mar 2025 16:33:21 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "iwqv9ja3dj"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-DjG+NeBb7oyUtwD0tyQE2Fogi2gUee+ERd5LDMl75mY="
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/sprite.png"
+        }
+      ]
+    },
+    {
+      "Route": "uploads/sprite.png",
+      "AssetFile": "uploads/sprite.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "36345"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DjG+NeBb7oyUtwD0tyQE2Fogi2gUee+ERd5LDMl75mY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 07 Mar 2025 16:33:21 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-DjG+NeBb7oyUtwD0tyQE2Fogi2gUee+ERd5LDMl75mY="
+        }
+      ]
+    }
+  ]
 }

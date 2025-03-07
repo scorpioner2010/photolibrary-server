@@ -1,6 +1,11 @@
-@ServerDotaMania_HostAddress = http://localhost:5085
+### Перевірка кореневого маршруту
+GET http://localhost:5085/
+Accept: text/html
 
-GET {{ServerDotaMania_HostAddress}}/weatherforecast/
-Accept: application/json
+### Перевірка вашого POST /api (для прикладу)
+POST http://localhost:5085/api
+Content-Type: application/json
 
-###
+{
+  "message": "Hello!"
+}

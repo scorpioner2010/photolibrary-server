@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\wwwroot\\uploads\\sprite.png",
+      "PackagePath": "staticwebassets\\uploads\\sprite.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ServerDotaMania.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ServerDotaMania.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.ServerDotaMania.props",
+      "PackagePath": "build\\ServerDotaMania.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.ServerDotaMania.props",
+      "PackagePath": "buildMultiTargeting\\ServerDotaMania.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.ServerDotaMania.props",
+      "PackagePath": "buildTransitive\\ServerDotaMania.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
