@@ -1,9 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.IO;
-using System.Linq;
-using System.Collections.Generic;
-using System;
 
 namespace ServerDotaMania.Controllers
 {

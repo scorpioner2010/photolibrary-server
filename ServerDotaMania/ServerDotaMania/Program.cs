@@ -14,12 +14,6 @@ builder.Services.AddCors(options =>
             .AllowAnyHeader());
 });
 
-/*builder.Services.AddControllers().AddJsonOptions(options =>
-{
-    // Зберігаємо регістр властивостей, як у C# (Name, Description, ImageBase64)
-    options.JsonSerializerOptions.PropertyNamingPolicy = null;
-});*/
-
 // Додаємо контролери
 builder.Services.AddControllers();
 
