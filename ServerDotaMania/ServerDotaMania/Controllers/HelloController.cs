@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Net;
+using System.Text;
+using Microsoft.AspNetCore.Mvc;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 
 namespace ServerDotaMania.Controllers
 {
@@ -7,214 +11,272 @@ namespace ServerDotaMania.Controllers
     public class HelloController : ControllerBase
     {
         private readonly ILogger<HelloController> _logger;
+        private readonly Cloudinary _cloudinary;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public HelloController(ILogger<HelloController> logger)
+        public HelloController(
+            ILogger<HelloController> logger,
+            Cloudinary cloudinary,
+            IHttpClientFactory httpClientFactory)
         {
             _logger = logger;
+            _cloudinary = cloudinary;
+            _httpClientFactory = httpClientFactory;
         }
 
-        [HttpGet]
-        public IActionResult Get()
-        {
-            _logger.LogInformation("Received GET request on /api");
-            return Ok(new { message = "Server work OK!" });
-        }
-
-        [HttpPost]
-        public IActionResult Post([FromBody] MessageRequest request)
-        {
-            if (request == null || string.IsNullOrEmpty(request.message))
-            {
-                _logger.LogWarning("Received POST request with empty message");
-                return BadRequest(new { message = "Message is required!" });
-            }
-
-            string responseMessage;
-            
-            if (request.message == "1")
-                responseMessage = "111!";
-            else if (request.message == "2")
-                responseMessage = "222!";
-            else if (request.message == "3")
-                responseMessage = "333";
-            else
-                responseMessage = "Error!";
-
-            _logger.LogInformation("Received POST request with message: {Message}, responding with: {Response}", request.message, responseMessage);
-            return Ok(new { message = responseMessage });
-        }
-        
-        [HttpPost("upload")]
-        public async Task<IActionResult> UploadFile(IFormFile file)
-        {
-            if (file == null || file.Length == 0)
-            {
-                _logger.LogWarning("Received upload request with no file");
-                return BadRequest("No file uploaded.");
-            }
-
-            var uploadsFolder = Path.Combine("wwwroot", "uploads");
-            if (!Directory.Exists(uploadsFolder))
-            {
-                Directory.CreateDirectory(uploadsFolder);
-                _logger.LogInformation("Created uploads folder at {UploadsFolder}", uploadsFolder);
-            }
-            
-            var filePath = Path.Combine(uploadsFolder, file.FileName);
-            _logger.LogInformation("Saving file {FileName} to {FilePath}", file.FileName, filePath);
-        
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await file.CopyToAsync(stream);
-            }
-        
-            _logger.LogInformation("File {FileName} uploaded successfully", file.FileName);
-            return Ok(new { message = "File uploaded successfully" });
-        }
-        
+        // ================== Завантаження контейнера ==================
         [HttpPost("uploadContainer")]
-        public async Task<IActionResult> UploadContainer(
-            [FromForm] string containerName,
-            [FromForm] string description,
-            [FromForm] IFormFile file)
+        public IActionResult UploadContainer(
+            [FromForm] string? containerName,
+            [FromForm] string? description,
+            [FromForm] IFormFile? file)
         {
+            _logger.LogInformation("=== POST /api/uploadContainer: Start ===");
+            _logger.LogInformation("Parameters: containerName='{ContainerName}', description='{Description}', fileName='{FileName}', fileSize={FileSize}",
+                containerName, description, file?.FileName, file?.Length);
+
             if (string.IsNullOrEmpty(containerName))
             {
                 _logger.LogWarning("Container name is missing.");
                 return BadRequest("Container name is required.");
             }
-            if (file == null || file.Length == 0)
+
+            bool hasImage = (file != null && file.Length > 0);
+            string prefix = $"containers/{containerName}";
+
+            // 1. Видаляємо старі ресурси з public_id, що починається з prefix
+            _logger.LogInformation("Deleting existing resources by prefix='{Prefix}'", prefix);
+            try
             {
-                _logger.LogWarning("Received uploadContainer request with no file");
-                return BadRequest("No file uploaded.");
+                // Видаляємо всі (image, raw, video), що починаються з containers/{containerName}
+                _cloudinary.DeleteResourcesByPrefix(prefix);
+                _logger.LogInformation("Successfully deleted resources with prefix='{Prefix}' (if any).", prefix);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error deleting resources by prefix='{Prefix}'", prefix);
+                return StatusCode(500, "Error clearing old container resources.");
             }
 
-            var baseFolder = Path.Combine("wwwroot", "containers");
-            var containerFolder = Path.Combine(baseFolder, containerName);
-            _logger.LogInformation("Processing container: {ContainerName}", containerName);
-
-            // Якщо контейнер вже існує – очищуємо його (видаляємо всі файли)
-            if (Directory.Exists(containerFolder))
+            // 2. Завантажуємо зображення (якщо є)
+            if (hasImage)
             {
-                _logger.LogInformation("Container {ContainerName} already exists. Clearing existing files.", containerName);
-                var existingFiles = Directory.GetFiles(containerFolder);
-                foreach (var existingFile in existingFiles)
+                _logger.LogInformation("Uploading image for container='{ContainerName}'...", containerName);
+                var imageParams = new ImageUploadParams
                 {
-                    _logger.LogInformation("Deleting existing file: {File}", existingFile);
-                    System.IO.File.Delete(existingFile);
+                    File = new FileDescription(file!.FileName, file.OpenReadStream()),
+                    Folder = prefix
+                };
+
+                try
+                {
+                    // Синхронний метод _cloudinary.Upload(...)
+                    var imgResult = _cloudinary.Upload(imageParams);
+                    if (imgResult.StatusCode == HttpStatusCode.OK)
+                    {
+                        _logger.LogInformation("Image uploaded successfully. PublicId={PublicId}", imgResult.PublicId);
+                    }
+                    else
+                    {
+                        _logger.LogError("ERROR uploading image. StatusCode={StatusCode}", imgResult.StatusCode);
+                        return StatusCode(500, "Error uploading image.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "UNHANDLED EXCEPTION while uploading image for container='{ContainerName}'", containerName);
+                    return StatusCode(500, "Unhandled exception during image upload.");
                 }
             }
             else
             {
-                Directory.CreateDirectory(containerFolder);
-                _logger.LogInformation("Created container folder: {ContainerFolder}", containerFolder);
+                _logger.LogInformation("No image provided. Only uploading description.txt if any description is given.");
             }
 
-            // Збереження файлу (наприклад, sprite.png)
-            var imagePath = Path.Combine(containerFolder, file.FileName);
-            _logger.LogInformation("Saving file {FileName} to container folder {ContainerFolder}", file.FileName, containerFolder);
-            using (var stream = new FileStream(imagePath, FileMode.Create))
+            // 3. Завантажуємо description.txt (raw)
+            var descContent = description ?? "";
+            var descBytes = Encoding.UTF8.GetBytes(descContent);
+            using var ms = new MemoryStream(descBytes);
+
+            var descParams = new RawUploadParams
             {
-                await file.CopyToAsync(stream);
+                File = new FileDescription("description.txt", ms),
+                Folder = prefix,
+                UseFilename = true
+            };
+
+            _logger.LogInformation("Uploading description.txt for container='{ContainerName}'...", containerName);
+            try
+            {
+                var descResult = _cloudinary.Upload(descParams);
+                if (descResult.StatusCode == HttpStatusCode.OK)
+                {
+                    _logger.LogInformation("description.txt uploaded successfully. PublicId={PublicId}", descResult.PublicId);
+                }
+                else
+                {
+                    _logger.LogError("ERROR uploading description.txt. StatusCode={StatusCode}", descResult.StatusCode);
+                    return StatusCode(500, "Error uploading description file.");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "UNHANDLED EXCEPTION while uploading description.txt for container='{ContainerName}'", containerName);
+                return StatusCode(500, "Unhandled exception during description upload.");
             }
 
-            // Збереження опису контейнера у текстовому файлі
-            var descriptionPath = Path.Combine(containerFolder, "description.txt");
-            _logger.LogInformation("Saving container description to {DescriptionPath}", descriptionPath);
-            await System.IO.File.WriteAllTextAsync(descriptionPath, description);
-
-            _logger.LogInformation("Container {ContainerName} uploaded successfully", containerName);
+            _logger.LogInformation("POST /api/uploadContainer: Finished successfully for container='{ContainerName}'.", containerName);
             return Ok(new { message = "Container uploaded successfully." });
         }
-        
+
+        // ================== Видалення контейнера ==================
         [HttpDelete("deleteContainer/{containerName}")]
-        public IActionResult DeleteContainer(string containerName)
+        public IActionResult DeleteContainer(string? containerName)
         {
+            _logger.LogInformation("=== DELETE /api/deleteContainer: Start ===");
+            _logger.LogInformation("containerName='{ContainerName}'", containerName);
+
             if (string.IsNullOrEmpty(containerName))
             {
                 _logger.LogWarning("Container name is missing for deletion.");
                 return BadRequest("Container name is required.");
             }
 
-            var baseFolder = Path.Combine("wwwroot", "containers");
-            var containerFolder = Path.Combine(baseFolder, containerName);
-
-            if (!Directory.Exists(containerFolder))
-            {
-                _logger.LogWarning("Container {ContainerName} not found for deletion.", containerName);
-                return NotFound(new { message = "Container not found." });
-            }
+            var prefix = $"containers/{containerName}";
+            _logger.LogInformation("Deleting resources by prefix='{Prefix}'", prefix);
 
             try
             {
-                Directory.Delete(containerFolder, true);
-                _logger.LogInformation("Container {ContainerName} deleted successfully.", containerName);
+                // Видаляємо все, що починається з containers/{containerName}
+                _cloudinary.DeleteResourcesByPrefix(prefix);
+                _logger.LogInformation("SUCCESS. Container '{ContainerName}' deleted from Cloudinary.", containerName);
                 return Ok(new { message = "Container deleted successfully." });
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error deleting container {ContainerName}.", containerName);
+                _logger.LogError(ex, "Error deleting container '{ContainerName}'", containerName);
                 return StatusCode(500, new { message = "Error deleting container." });
             }
         }
 
-        // ====== Новий endpoint для отримання списку контейнерів ======
+        // ================== Отримання списку контейнерів (через Search з type=upload) ==================
         [HttpGet("containers")]
         public IActionResult GetAllContainers()
         {
-            var baseFolder = Path.Combine("wwwroot", "containers");
-            if (!Directory.Exists(baseFolder))
+            _logger.LogInformation("=== GET /api/containers: Start fetching containers from Cloudinary ===");
+
+            // Використовуємо Search(), бо .ListResourcesParams не має Prefix/PublicIdPrefix
+            // Спробуємо вираз: type=upload AND public_id:"containers/*"
+            var expression = "type=upload AND public_id:\"containers/*\"";
+
+            var searchResult = _cloudinary.Search()
+                .Expression(expression)
+                .MaxResults(500)
+                .Execute();
+
+            if (searchResult?.Resources == null || searchResult.Resources.Count == 0)
             {
-                Directory.CreateDirectory(baseFolder);
+                _logger.LogInformation("No containers found. Returning empty list.");
+                return Ok(new List<ContainerInfo>());
             }
 
-            var containerDirs = Directory.GetDirectories(baseFolder);
-            var result = new List<ContainerInfo>();
-            
-            foreach (var dir in containerDirs)
-            {
-                var name = Path.GetFileName(dir);
-                
-                var descriptionPath = Path.Combine(dir, "description.txt");
-                var description = System.IO.File.Exists(descriptionPath)
-                    ? System.IO.File.ReadAllText(descriptionPath)
-                    : "";
-                
-                // Знаходимо перший файл з розширенням .png/.jpg/.jpeg
-                var imagePath = Directory.GetFiles(dir).FirstOrDefault(f =>
-                    f.EndsWith(".png", StringComparison.OrdinalIgnoreCase) ||
-                    f.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
-                    f.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase));
+            _logger.LogInformation("Found {Count} resources with expression='{Expression}'", searchResult.Resources.Count, expression);
 
-                string imageBase64 = "";
-                if (imagePath != null)
+            // Парсимо containerName із PublicId
+            var dict = new Dictionary<string, List<SearchResource>>();
+
+            foreach (var resource in searchResult.Resources)
+            {
+                var pubId = resource.PublicId;
+                if (!pubId.StartsWith("containers/"))
+                    continue;
+
+                var rest = pubId.Substring("containers/".Length);
+                var slashIndex = rest.IndexOf('/');
+                if (slashIndex < 0)
                 {
-                    var imageBytes = System.IO.File.ReadAllBytes(imagePath);
-                    imageBase64 = Convert.ToBase64String(imageBytes);
+                    _logger.LogWarning("File {PublicId} doesn't have a second slash. Skipping.", pubId);
+                    continue;
+                }
+
+                var contName = rest.Substring(0, slashIndex);
+                if (!dict.ContainsKey(contName))
+                    dict[contName] = new List<SearchResource>();
+
+                dict[contName].Add(resource);
+            }
+
+            var result = new List<ContainerInfo>();
+
+            foreach (var kvp in dict)
+            {
+                var contName = kvp.Key;
+                var resources = kvp.Value;
+                _logger.LogInformation("Processing container='{ContainerName}' with {Count} resources.", contName, resources.Count);
+
+                string? description = null;
+                string? imageBase64 = null;
+
+                foreach (var res in resources)
+                {
+                    // Якщо це description.txt
+                    if (res.PublicId.EndsWith("description.txt", StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (res.SecureUrl != null)
+                        {
+                            try
+                            {
+                                var url = res.SecureUrl.ToString();
+                                using var httpClient = _httpClientFactory.CreateClient();
+                                var fileBytes = httpClient.GetByteArrayAsync(url).Result; // синхронний виклик
+                                description = Encoding.UTF8.GetString(fileBytes);
+                                _logger.LogInformation("Downloaded description.txt for container='{ContainerName}'", contName);
+                            }
+                            catch (Exception ex)
+                            {
+                                _logger.LogError(ex, "Error downloading description.txt for container='{ContainerName}'", contName);
+                            }
+                        }
+                    }
+                    // Якщо це зображення
+                    else if (res.ResourceType == ResourceType.Image && imageBase64 == null)
+                    {
+                        if (res.SecureUrl != null)
+                        {
+                            try
+                            {
+                                var url = res.SecureUrl.ToString();
+                                using var httpClient = _httpClientFactory.CreateClient();
+                                var imgBytes = httpClient.GetByteArrayAsync(url).Result;
+                                imageBase64 = Convert.ToBase64String(imgBytes);
+                                _logger.LogInformation("Downloaded image for container='{ContainerName}'", contName);
+                            }
+                            catch (Exception ex)
+                            {
+                                _logger.LogError(ex, "Error downloading image for container='{ContainerName}'", contName);
+                            }
+                        }
+                    }
                 }
 
                 result.Add(new ContainerInfo
                 {
-                    Name = name,
+                    Name = contName,
                     Description = description,
                     ImageBase64 = imageBase64
                 });
             }
 
+            _logger.LogInformation("Returning {Count} containers.", result.Count);
             return Ok(result);
         }
     }
 
-    public class MessageRequest
-    {
-        public string message { get; set; }
-    }
-
-    // ====== Клас-модель для повернення списку контейнерів ======
+    // ====== Класи-моделі ======
     public class ContainerInfo
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string ImageBase64 { get; set; }
+        public string? Name { get; set; }
+        public string? Description { get; set; }
+        public string? ImageBase64 { get; set; }
     }
 }
