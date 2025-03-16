@@ -1,5 +1,3 @@
-using CloudinaryDotNet;
-using Microsoft.Extensions.Logging;
 using ServerDotaMania.Settings;
 using ServerDotaMania.Logging; // Підключаємо простір імен із MyInMemoryLogger
 
