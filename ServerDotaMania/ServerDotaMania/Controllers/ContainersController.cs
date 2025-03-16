@@ -19,14 +19,19 @@ namespace ServerDotaMania.Controllers
         private readonly ILogger<ContainersController> _logger;
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public ContainersController(IOptions<CloudinarySettings> config, ILogger<ContainersController> logger, IHttpClientFactory httpClientFactory)
+        public ContainersController(
+            IOptions<CloudinarySettings> config,
+            ILogger<ContainersController> logger,
+            IHttpClientFactory httpClientFactory)
         {
             _logger = logger;
             _httpClientFactory = httpClientFactory;
+
             var account = new Account(
                 config.Value.CloudName,
                 config.Value.ApiKey,
                 config.Value.ApiSecret);
+
             _cloudinary = new Cloudinary(account);
             _logger.LogInformation("Cloudinary initialized with CloudName: {CloudName}", config.Value.CloudName);
         }
@@ -35,7 +40,7 @@ namespace ServerDotaMania.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateContainer([FromForm] ContainerCreateDto dto)
         {
-            _logger.LogInformation("CreateContainer request received. Container Name: {Name}", dto.Name);
+            _logger.LogInformation("=== CreateContainer START. Name: {Name} ===", dto.Name);
 
             if (string.IsNullOrWhiteSpace(dto.Name))
             {
@@ -50,16 +55,19 @@ namespace ServerDotaMania.Controllers
 
             try
             {
-                _logger.LogInformation("Uploading image for container {Name}.", dto.Name);
+                _logger.LogInformation("Uploading image for container {Name}", dto.Name);
                 var uploadParams = new ImageUploadParams
                 {
                     File = new FileDescription(dto.Image.FileName, dto.Image.OpenReadStream())
                 };
 
                 var uploadResult = await _cloudinary.UploadAsync(uploadParams);
+                _logger.LogInformation("Cloudinary upload status code: {StatusCode}", uploadResult.StatusCode);
+
                 if (uploadResult.StatusCode != HttpStatusCode.OK)
                 {
-                    _logger.LogError("Error uploading image for container {Name}. Status: {StatusCode}", dto.Name, uploadResult.StatusCode);
+                    _logger.LogError("Error uploading image for container {Name}. Status: {StatusCode}",
+                        dto.Name, uploadResult.StatusCode);
                     return StatusCode(500, "Error uploading image.");
                 }
 
@@ -73,7 +81,9 @@ namespace ServerDotaMania.Controllers
                 };
 
                 _containers.Add(container);
-                _logger.LogInformation("Container {Name} created successfully with Id {Id}.", container.Name, container.Id);
+                _logger.LogInformation("Container {Name} created successfully with Id {Id}", container.Name, container.Id);
+
+                _logger.LogInformation("=== CreateContainer END. ===");
                 return Ok(container);
             }
             catch (Exception ex)
@@ -87,7 +97,7 @@ namespace ServerDotaMania.Controllers
         [HttpDelete("{name}")]
         public async Task<IActionResult> DeleteContainer(string name)
         {
-            _logger.LogInformation("DeleteContainer request received for container: {Name}", name);
+            _logger.LogInformation("=== DeleteContainer START. Name: {Name} ===", name);
 
             if (string.IsNullOrWhiteSpace(name))
             {
@@ -104,18 +114,25 @@ namespace ServerDotaMania.Controllers
 
             try
             {
-                _logger.LogInformation("Deleting image from Cloudinary for container {Name} with PublicId {PublicId}", name, container.ImagePublicId);
+                _logger.LogInformation("Deleting image from Cloudinary for container {Name} with PublicId {PublicId}",
+                    name, container.ImagePublicId);
+
                 var deletionParams = new DeletionParams(container.ImagePublicId);
                 var deletionResult = await _cloudinary.DestroyAsync(deletionParams);
+
                 if (deletionResult.Result != "ok")
                 {
-                    _logger.LogError("Error deleting image from Cloudinary for container {Name}. Result: {Result}", name, deletionResult.Result);
+                    _logger.LogError("Error deleting image from Cloudinary for container {Name}. Result: {Result}",
+                        name, deletionResult.Result);
                     return StatusCode(500, "Error deleting image from Cloudinary.");
                 }
 
                 _containers.Remove(container);
                 _logger.LogInformation("Container {Name} deleted successfully.", name);
-                return Ok("Container deleted successfully.");
+
+                _logger.LogInformation("=== DeleteContainer END. ===");
+                // Повертаємо JSON
+                return Ok(new { message = "Container deleted successfully." });
             }
             catch (Exception ex)
             {
@@ -128,25 +145,34 @@ namespace ServerDotaMania.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllContainers()
         {
-            _logger.LogInformation("GetAllContainers request received. Total containers in memory: {Count}", _containers.Count);
+            _logger.LogInformation("=== GetAllContainers START. Total in memory: {Count} ===", _containers.Count);
             var httpClient = _httpClientFactory.CreateClient();
             var containerInfoList = new List<object>();
 
             foreach (var container in _containers)
             {
                 string imageBase64 = "";
+                _logger.LogInformation("Processing container: {Name}, Url: {Url}", container.Name, container.ImageUrl);
+
                 if (!string.IsNullOrEmpty(container.ImageUrl))
                 {
                     try
                     {
-                        _logger.LogInformation("Fetching image for container '{Name}' from URL: {ImageUrl}", container.Name, container.ImageUrl);
+                        _logger.LogInformation("Fetching image for container '{Name}' from URL: {ImageUrl}",
+                            container.Name, container.ImageUrl);
+
                         byte[] imageBytes = await httpClient.GetByteArrayAsync(container.ImageUrl);
                         imageBase64 = Convert.ToBase64String(imageBytes);
-                        _logger.LogInformation("Successfully fetched image for container '{Name}'. Base64 string length: {Length}", container.Name, imageBase64.Length);
+
+                        _logger.LogInformation(
+                            "Successfully fetched image for container '{Name}'. Base64 length: {Length}",
+                            container.Name, imageBase64.Length);
                     }
                     catch (Exception ex)
                     {
-                        _logger.LogError(ex, "Error fetching image for container '{Name}' from URL: {ImageUrl}", container.Name, container.ImageUrl);
+                        _logger.LogError(ex,
+                            "Error fetching image for container '{Name}' from URL: {ImageUrl}",
+                            container.Name, container.ImageUrl);
                     }
                 }
                 else
@@ -163,6 +189,7 @@ namespace ServerDotaMania.Controllers
             }
 
             _logger.LogInformation("Returning {Count} containers from GET endpoint.", containerInfoList.Count);
+            _logger.LogInformation("=== GetAllContainers END. ===");
             return Ok(containerInfoList);
         }
     }
