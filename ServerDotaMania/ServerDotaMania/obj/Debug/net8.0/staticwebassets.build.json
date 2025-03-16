@@ -1,12 +1,20 @@
 {
   "Version": 1,
-  "Hash": "YmNNgjCcDtOtDWFFB7kig1bSt5jRKhat1raJfPvwJzs=",
+  "Hash": "QX8DbXkRC3v6sg1AtEt8J0izoky1X9QlBL3dDuG4eDk=",
   "Source": "ServerDotaMania",
   "BasePath": "_content/ServerDotaMania",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "ServerDotaMania\\wwwroot",
+      "Source": "ServerDotaMania",
+      "ContentRoot": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\wwwroot\\",
+      "BasePath": "_content/ServerDotaMania",
+      "Pattern": "**"
+    }
+  ],
   "Assets": [],
   "Endpoints": []
 }

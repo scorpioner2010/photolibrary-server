@@ -8,7 +8,9 @@
     ".NETCoreApp,Version=v8.0": {
       "ServerDotaMania/1.0.0": {
         "dependencies": {
-          "CloudinaryDotNet": "1.27.4"
+          "CloudinaryDotNet": "1.27.4",
+          "Microsoft.Extensions.Logging": "10.0.0-preview.1.25080.5",
+          "Microsoft.Extensions.Logging.Abstractions": "10.0.0-preview.1.25080.5"
         },
         "runtime": {
           "ServerDotaMania.dll": {}
@@ -24,6 +26,70 @@
           "lib/netstandard2.0/CloudinaryDotNet.dll": {
             "assemblyVersion": "1.27.4.0",
             "fileVersion": "1.27.4.0"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection/10.0.0-preview.1.25080.5": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.0-preview.1.25080.5"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.DependencyInjection.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.8005"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/10.0.0-preview.1.25080.5": {
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.8005"
+          }
+        }
+      },
+      "Microsoft.Extensions.Logging/10.0.0-preview.1.25080.5": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection": "10.0.0-preview.1.25080.5",
+          "Microsoft.Extensions.Logging.Abstractions": "10.0.0-preview.1.25080.5",
+          "Microsoft.Extensions.Options": "10.0.0-preview.1.25080.5"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Logging.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.8005"
+          }
+        }
+      },
+      "Microsoft.Extensions.Logging.Abstractions/10.0.0-preview.1.25080.5": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.0-preview.1.25080.5",
+          "System.Diagnostics.DiagnosticSource": "10.0.0-preview.1.25080.5"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.8005"
+          }
+        }
+      },
+      "Microsoft.Extensions.Options/10.0.0-preview.1.25080.5": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.0-preview.1.25080.5",
+          "Microsoft.Extensions.Primitives": "10.0.0-preview.1.25080.5"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Options.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.8005"
+          }
+        }
+      },
+      "Microsoft.Extensions.Primitives/10.0.0-preview.1.25080.5": {
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Primitives.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.8005"
           }
         }
       },
@@ -107,13 +173,12 @@
           "System.Runtime": "4.3.1"
         }
       },
-      "System.Diagnostics.DiagnosticSource/4.3.0": {
-        "dependencies": {
-          "System.Collections": "4.3.0",
-          "System.Diagnostics.Tracing": "4.3.0",
-          "System.Reflection": "4.3.0",
-          "System.Runtime": "4.3.1",
-          "System.Threading": "4.3.0"
+      "System.Diagnostics.DiagnosticSource/10.0.0-preview.1.25080.5": {
+        "runtime": {
+          "lib/net8.0/System.Diagnostics.DiagnosticSource.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.8005"
+          }
         }
       },
       "System.Diagnostics.Tracing/4.3.0": {
@@ -188,7 +253,7 @@
           "Microsoft.NETCore.Platforms": "1.1.1",
           "System.Collections": "4.3.0",
           "System.Diagnostics.Debug": "4.3.0",
-          "System.Diagnostics.DiagnosticSource": "4.3.0",
+          "System.Diagnostics.DiagnosticSource": "10.0.0-preview.1.25080.5",
           "System.Diagnostics.Tracing": "4.3.0",
           "System.Globalization": "4.3.0",
           "System.Globalization.Extensions": "4.3.0",
@@ -447,6 +512,48 @@
       "path": "cloudinarydotnet/1.27.4",
       "hashPath": "cloudinarydotnet.1.27.4.nupkg.sha512"
     },
+    "Microsoft.Extensions.DependencyInjection/10.0.0-preview.1.25080.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-T50DtUNMlTWsIjJaufPsPBEkeN7firM83Z/JDY0q9v4uL47llTCBdRtlrJ+NlGrF6+3Ny0mtWB7gIKn4AUeGzA==",
+      "path": "microsoft.extensions.dependencyinjection/10.0.0-preview.1.25080.5",
+      "hashPath": "microsoft.extensions.dependencyinjection.10.0.0-preview.1.25080.5.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/10.0.0-preview.1.25080.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/6gp/48ibjQePwjWlSu72bditSihLVRXf3L+kcoj6JKWA+tnWxEgOIuKmrSigTvSeqmAHcdpSwu7Fuf6bgFAyQ==",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/10.0.0-preview.1.25080.5",
+      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.10.0.0-preview.1.25080.5.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Logging/10.0.0-preview.1.25080.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wr2pP0FA4hjROdtbvtV+yZghuXlX4Xpb792ozXjkkwBHbQv8ibjsqeY9d/tRRY9oFCc29QbQ+SYymMo/ypQsfg==",
+      "path": "microsoft.extensions.logging/10.0.0-preview.1.25080.5",
+      "hashPath": "microsoft.extensions.logging.10.0.0-preview.1.25080.5.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Logging.Abstractions/10.0.0-preview.1.25080.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-C21GNMRtPHRWKRRvPba59tjEqvwxpD6B+1Cd+B0Z3LamD2rZ3WTLTgf05kN18dXbhvcT+i24CN7Yntsbu1y8ZQ==",
+      "path": "microsoft.extensions.logging.abstractions/10.0.0-preview.1.25080.5",
+      "hashPath": "microsoft.extensions.logging.abstractions.10.0.0-preview.1.25080.5.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Options/10.0.0-preview.1.25080.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ibl/JRg6OJE1s5vWj/gAi+gzPR4Y1DvxZM7DsX9MalSwE9XI/VgMOT/axabcNYmrwVccL1jB9cATPRoGSI1olQ==",
+      "path": "microsoft.extensions.options/10.0.0-preview.1.25080.5",
+      "hashPath": "microsoft.extensions.options.10.0.0-preview.1.25080.5.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Primitives/10.0.0-preview.1.25080.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vuci/NLr6n/4Vxig68IwDxu2J6OMv6k9d8PXi+QHR2z7EZciBxL1R5Ri3kdMUZxZfD38M/AcUWllGcynSgPJSg==",
+      "path": "microsoft.extensions.primitives/10.0.0-preview.1.25080.5",
+      "hashPath": "microsoft.extensions.primitives.10.0.0-preview.1.25080.5.nupkg.sha512"
+    },
     "Microsoft.NETCore.Platforms/1.1.1": {
       "type": "package",
       "serviceable": true,
@@ -594,12 +701,12 @@
       "path": "system.diagnostics.debug/4.3.0",
       "hashPath": "system.diagnostics.debug.4.3.0.nupkg.sha512"
     },
-    "System.Diagnostics.DiagnosticSource/4.3.0": {
+    "System.Diagnostics.DiagnosticSource/10.0.0-preview.1.25080.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-tD6kosZnTAGdrEa0tZSuFyunMbt/5KYDnHdndJYGqZoNy00XVXyACd5d6KnE1YgYv3ne2CjtAfNXo/fwEhnKUA==",
-      "path": "system.diagnostics.diagnosticsource/4.3.0",
-      "hashPath": "system.diagnostics.diagnosticsource.4.3.0.nupkg.sha512"
+      "sha512": "sha512-ojrFCCDKA40SOa6rpzhQyNTnQGkOgi+TBiRiGJTK11MPRhiSbsSuFEDDQsBRDBAiM5YdJAgEEwgbRzpXQIFfQg==",
+      "path": "system.diagnostics.diagnosticsource/10.0.0-preview.1.25080.5",
+      "hashPath": "system.diagnostics.diagnosticsource.10.0.0-preview.1.25080.5.nupkg.sha512"
     },
     "System.Diagnostics.Tracing/4.3.0": {
       "type": "package",

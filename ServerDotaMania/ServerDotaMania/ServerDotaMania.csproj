@@ -12,6 +12,8 @@
 
   <ItemGroup>
     <PackageReference Include="CloudinaryDotNet" Version="1.27.4" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.0-preview.1.25080.5" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.0-preview.1.25080.5" />
   </ItemGroup>
 
 </Project>

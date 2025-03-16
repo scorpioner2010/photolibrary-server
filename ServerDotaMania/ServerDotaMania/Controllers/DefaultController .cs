@@ -1,15 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace ServerDotaMania.Controllers;
-
-[ApiController]
-[Route("")]
-public class DefaultController : ControllerBase
+namespace ServerDotaMania.Controllers
 {
-    [HttpGet]
-    public ContentResult Index()
+    [ApiController]
+    [Route("")]
+    public class DefaultController : ControllerBase
     {
-        var html = @"
+        private readonly ILogger<DefaultController> _logger;
+        
+        public DefaultController(ILogger<DefaultController> logger)
+        {
+            _logger = logger;
+        }
+        
+        [HttpGet]
+        public ContentResult Index()
+        {
+            _logger.LogInformation("Default index page requested.");
+            var html = @"
 <html>
 <head>
     <title>My Server</title>
@@ -17,19 +25,14 @@ public class DefaultController : ControllerBase
 <body>
     <h1>Welcome to my server!</h1>
     <pre id='logContainer' style='background:#f0f0f0; padding:10px;'></pre>
-
     <button onclick='testCloudinary()'>Test Cloudinary</button>
-
     <script>
-        // Функція для отримання логів
         async function fetchLogs() {
             const res = await fetch('/logs');
             const data = await res.json();
             document.getElementById('logContainer').innerText = data.join('\n');
         }
         setInterval(fetchLogs, 1000);
-
-        // Тестове завантаження (GET /api/testCloudinary)
         async function testCloudinary() {
             try {
                 const res = await fetch('/api/testCloudinary');
@@ -42,11 +45,11 @@ public class DefaultController : ControllerBase
     </script>
 </body>
 </html>";
-
-        return new ContentResult
-        {
-            ContentType = "text/html",
-            Content = html
-        };
+            return new ContentResult
+            {
+                ContentType = "text/html",
+                Content = html
+            };
+        }
     }
 }

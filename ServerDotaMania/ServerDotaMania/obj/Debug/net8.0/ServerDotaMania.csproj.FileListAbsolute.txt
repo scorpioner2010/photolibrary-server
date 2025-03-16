@@ -32,3 +32,10 @@ A:\CodeFolder\Unity\dotamaniagithubpages\dotamania-server\ServerDotaMania\Server
 A:\CodeFolder\Unity\dotamaniagithubpages\dotamania-server\ServerDotaMania\ServerDotaMania\bin\Debug\net8.0\Newtonsoft.Json.dll
 A:\CodeFolder\Unity\dotamaniagithubpages\dotamania-server\ServerDotaMania\ServerDotaMania\obj\Debug\net8.0\ServerDotaMania.csproj.AssemblyReference.cache
 A:\CodeFolder\Unity\dotamaniagithubpages\dotamania-server\ServerDotaMania\ServerDotaMania\obj\Debug\net8.0\ServerDo.2C605074.Up2Date
+A:\CodeFolder\Unity\dotamaniagithubpages\dotamania-server\ServerDotaMania\ServerDotaMania\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+A:\CodeFolder\Unity\dotamaniagithubpages\dotamania-server\ServerDotaMania\ServerDotaMania\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+A:\CodeFolder\Unity\dotamaniagithubpages\dotamania-server\ServerDotaMania\ServerDotaMania\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+A:\CodeFolder\Unity\dotamaniagithubpages\dotamania-server\ServerDotaMania\ServerDotaMania\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+A:\CodeFolder\Unity\dotamaniagithubpages\dotamania-server\ServerDotaMania\ServerDotaMania\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+A:\CodeFolder\Unity\dotamaniagithubpages\dotamania-server\ServerDotaMania\ServerDotaMania\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+A:\CodeFolder\Unity\dotamaniagithubpages\dotamania-server\ServerDotaMania\ServerDotaMania\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll

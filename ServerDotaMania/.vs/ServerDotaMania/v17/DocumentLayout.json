@@ -1,37 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{59A2048C-888D-412C-A59E-5422377F57EA}|ServerDotaMania\\ServerDotaMania.csproj|a:\\codefolder\\unity\\dotamaniagithubpages\\dotamania-server\\serverdotamania\\serverdotamania\\controllers\\hellocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{59A2048C-888D-412C-A59E-5422377F57EA}|ServerDotaMania\\ServerDotaMania.csproj|solutionrelative:serverdotamania\\controllers\\hellocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "HelloController.cs",
-              "DocumentMoniker": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\Controllers\\HelloController.cs",
-              "RelativeDocumentMoniker": "ServerDotaMania\\Controllers\\HelloController.cs",
-              "ToolTip": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\Controllers\\HelloController.cs",
-              "RelativeToolTip": "ServerDotaMania\\Controllers\\HelloController.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAAwIUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-14T17:00:57.762Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }
