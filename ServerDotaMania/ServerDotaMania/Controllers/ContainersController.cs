@@ -15,9 +15,7 @@ namespace ServerDotaMania.Controllers
     [Route("api/[controller]")]
     public class ContainersController : ControllerBase
     {
-        // Постійний PublicId для JSON-файлу
         private const string ContainersDataPublicId = "containers_data";
-
         private readonly Cloudinary _cloudinary;
         private readonly ILogger<ContainersController> _logger;
         private readonly IHttpClientFactory _httpClientFactory;
@@ -30,66 +28,54 @@ namespace ServerDotaMania.Controllers
         {
             _logger = logger;
             _httpClientFactory = httpClientFactory;
-
             var account = new Account(
                 config.Value.CloudName,
                 config.Value.ApiKey,
                 config.Value.ApiSecret);
-
             _cloudinary = new Cloudinary(account);
-            _cloudName = config.Value.CloudName;  // Запам'ятовуємо для побудови URL
+            _cloudName = config.Value.CloudName;
             _logger.LogInformation("Cloudinary initialized with CloudName: {CloudName}", _cloudName);
         }
 
-        // ────────────────────────────────────────────────────────────────────────────────
-        // ДОПОМІЖНІ МЕТОДИ
-        // ────────────────────────────────────────────────────────────────────────────────
-
-        // Формує URL до JSON-файлу з параметром часу для уникнення кешування
+        // Формує URL з міткою часу для уникнення кешування
         private string GetContainersDataUrl()
         {
             long timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
             return $"https://res.cloudinary.com/{_cloudName}/raw/upload/{ContainersDataPublicId}.json?v={timestamp}";
         }
 
-        // Завантажує JSON-файл з Cloudinary та десеріалізує у список контейнерів
-        private async Task<List<ContainerModel>> DownloadContainersDataAsync()
+        // Завантаження даних у вигляді словника (ключ – GUID)
+        private async Task<Dictionary<string, ContainerModel>> DownloadContainersDataAsync()
         {
             try
             {
                 var client = _httpClientFactory.CreateClient();
                 var url = GetContainersDataUrl();
-
                 var jsonData = await client.GetStringAsync(url);
-                var containers = JsonConvert.DeserializeObject<List<ContainerModel>>(jsonData);
-
-                _logger.LogInformation("Containers data downloaded successfully. Items count: {Count}",
-                    containers?.Count ?? 0);
-
-                return containers ?? new List<ContainerModel>();
+                var containers = JsonConvert.DeserializeObject<Dictionary<string, ContainerModel>>(jsonData);
+                _logger.LogInformation("Containers data downloaded successfully. Count: {Count}", containers?.Count ?? 0);
+                return containers ?? new Dictionary<string, ContainerModel>();
             }
             catch (Exception ex)
             {
-                _logger.LogWarning("Could not download containers data. Initializing empty list. Exception: {Exception}", ex);
-                return new List<ContainerModel>();
+                _logger.LogWarning("Could not download containers data. Initializing empty dictionary. Exception: {Exception}", ex);
+                return new Dictionary<string, ContainerModel>();
             }
         }
 
-        // Завантажує оновлений список контейнерів у вигляді JSON на Cloudinary
-        private async Task UploadContainersDataAsync(List<ContainerModel> containers)
+        // Завантаження оновлених даних у Cloudinary
+        private async Task UploadContainersDataAsync(Dictionary<string, ContainerModel> containers)
         {
             try
             {
                 var jsonData = JsonConvert.SerializeObject(containers);
-
                 using var ms = new MemoryStream(Encoding.UTF8.GetBytes(jsonData));
                 var uploadParams = new RawUploadParams
                 {
                     File = new FileDescription("containers.json", ms),
                     PublicId = ContainersDataPublicId,
-                    Invalidate = true // Просимо Cloudinary очистити кеш
+                    Invalidate = true
                 };
-
                 var uploadResult = await _cloudinary.UploadAsync(uploadParams);
                 _logger.LogInformation("Containers data uploaded. PublicId: {PublicId}", uploadResult.PublicId);
             }
@@ -100,13 +86,12 @@ namespace ServerDotaMania.Controllers
             }
         }
 
-        // Метод для перевірки оновлення даних із Cloudinary
-        private async Task<List<ContainerModel>> WaitForUpdatedContainersDataAsync(List<ContainerModel> expectedContainers)
+        // Очікування підтвердження оновлення даних
+        private async Task<Dictionary<string, ContainerModel>> WaitForUpdatedContainersDataAsync(Dictionary<string, ContainerModel> expectedContainers)
         {
             string expectedJson = JsonConvert.SerializeObject(expectedContainers);
             int maxAttempts = 10;
-            int delayMs = 1000; // 1 секунда
-
+            int delayMs = 1000;
             for (int attempt = 0; attempt < maxAttempts; attempt++)
             {
                 try
@@ -114,36 +99,27 @@ namespace ServerDotaMania.Controllers
                     var client = _httpClientFactory.CreateClient();
                     var url = GetContainersDataUrl();
                     var jsonData = await client.GetStringAsync(url);
-
-                    // Порівнюємо отриманий JSON із очікуваним (без пробільних символів)
                     if (jsonData.Trim() == expectedJson.Trim())
                     {
                         _logger.LogInformation("Updated containers data confirmed on attempt {Attempt}.", attempt + 1);
-                        return JsonConvert.DeserializeObject<List<ContainerModel>>(jsonData);
+                        return JsonConvert.DeserializeObject<Dictionary<string, ContainerModel>>(jsonData);
                     }
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogWarning("Attempt {Attempt} failed to confirm updated containers data: {Exception}", attempt + 1, ex.Message);
+                    _logger.LogWarning("Attempt {Attempt} failed: {Exception}", attempt + 1, ex.Message);
                 }
                 await Task.Delay(delayMs);
             }
-
             _logger.LogWarning("Failed to confirm updated containers data after {Attempts} attempts.", maxAttempts);
-            // Якщо не вдалося підтвердити оновлення, повертаємо очікувані дані
             return expectedContainers;
         }
-
-        // ────────────────────────────────────────────────────────────────────────────────
-        // ENDPOINTS
-        // ────────────────────────────────────────────────────────────────────────────────
 
         // POST: /api/containers
         [HttpPost]
         public async Task<IActionResult> CreateContainer([FromForm] ContainerCreateDto dto)
         {
             _logger.LogInformation("=== CreateContainer START. Name: {Name} ===", dto.Name);
-
             if (string.IsNullOrWhiteSpace(dto.Name))
             {
                 _logger.LogWarning("Container name is missing.");
@@ -157,29 +133,30 @@ namespace ServerDotaMania.Controllers
 
             try
             {
-                // 1. Завантаження поточного списку контейнерів
                 var containers = await DownloadContainersDataAsync();
 
-                // 2. Завантаження зображення на Cloudinary
-                _logger.LogInformation("Uploading image for container {Name}", dto.Name);
+                // Перевірка на дублювання за ім'ям (без врахування регістру)
+                if (containers.Values.Any(c => c.Name.Equals(dto.Name, StringComparison.OrdinalIgnoreCase)))
+                {
+                    _logger.LogWarning("Container with name {Name} already exists.", dto.Name);
+                    return Conflict("Такий контейнер вже існує.");
+                }
 
+                _logger.LogInformation("Uploading image for container {Name}", dto.Name);
                 var uploadParams = new ImageUploadParams
                 {
                     File = new FileDescription(dto.Image.FileName, dto.Image.OpenReadStream())
                 };
-
                 var uploadResult = await _cloudinary.UploadAsync(uploadParams);
-                _logger.LogInformation("Cloudinary upload status code: {StatusCode}", uploadResult.StatusCode);
-
                 if (uploadResult.StatusCode != HttpStatusCode.OK)
                 {
                     _logger.LogError("Error uploading image for container {Name}. Status: {StatusCode}", dto.Name, uploadResult.StatusCode);
                     return StatusCode(500, "Error uploading image.");
                 }
 
-                // 3. Створення нового контейнера з унікальним Id
-                int newId = containers.Any() ? containers.Max(c => c.Id) + 1 : 1;
-                var container = new ContainerModel
+                // Генерація унікального GUID
+                string newId = Guid.NewGuid().ToString();
+                ContainerModel container = new ContainerModel
                 {
                     Id = newId,
                     Name = dto.Name,
@@ -188,18 +165,14 @@ namespace ServerDotaMania.Controllers
                     ImagePublicId = uploadResult.PublicId
                 };
 
-                containers.Add(container);
+                containers.Add(newId, container);
                 _logger.LogInformation("Container {Name} created successfully with Id {Id}", container.Name, container.Id);
 
-                // 4. Оновлення JSON на Cloudinary
                 await UploadContainersDataAsync(containers);
-
-                // 5. Очікуємо підтвердження оновлення даних
                 var confirmedContainers = await WaitForUpdatedContainersDataAsync(containers);
 
                 _logger.LogInformation("=== CreateContainer END. ===");
-                // Повертаємо оновлений список контейнерів
-                return Ok(confirmedContainers);
+                return Ok(confirmedContainers.Values.ToList());
             }
             catch (Exception ex)
             {
@@ -208,59 +181,47 @@ namespace ServerDotaMania.Controllers
             }
         }
 
-        // DELETE: /api/containers/{name}
-        [HttpDelete("{name}")]
-        public async Task<IActionResult> DeleteContainer(string name)
+        // DELETE: /api/containers/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteContainer(string id)
         {
-            _logger.LogInformation("=== DeleteContainer START. Name: {Name} ===", name);
-
-            if (string.IsNullOrWhiteSpace(name))
+            _logger.LogInformation("=== DeleteContainer START. Id: {Id} ===", id);
+            if (string.IsNullOrWhiteSpace(id))
             {
-                _logger.LogWarning("Container name is missing in delete request.");
-                return BadRequest("Container name is required.");
+                _logger.LogWarning("Container Id is missing in delete request.");
+                return BadRequest("Container Id is required.");
             }
 
             try
             {
-                // 1. Завантаження поточного списку контейнерів
                 var containers = await DownloadContainersDataAsync();
-
-                // 2. Пошук контейнера
-                var container = containers.FirstOrDefault(c => c.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
-                if (container == null)
+                if (!containers.TryGetValue(id, out var container))
                 {
-                    _logger.LogWarning("Container {Name} not found.", name);
+                    _logger.LogWarning("Container with Id {Id} not found.", id);
                     return NotFound("Container not found.");
                 }
 
-                // 3. Видалення зображення з Cloudinary
-                _logger.LogInformation("Deleting image from Cloudinary for container {Name} with PublicId {PublicId}", name, container.ImagePublicId);
+                _logger.LogInformation("Deleting image from Cloudinary for container Id {Id}", id);
                 var deletionParams = new DeletionParams(container.ImagePublicId);
                 var deletionResult = await _cloudinary.DestroyAsync(deletionParams);
-
                 if (deletionResult.Result != "ok")
                 {
-                    _logger.LogError("Error deleting image from Cloudinary for container {Name}. Result: {Result}", name, deletionResult.Result);
+                    _logger.LogError("Error deleting image for container Id {Id}. Result: {Result}", id, deletionResult.Result);
                     return StatusCode(500, "Error deleting image from Cloudinary.");
                 }
 
-                // 4. Видалення контейнера зі списку
-                containers.Remove(container);
-                _logger.LogInformation("Container {Name} deleted successfully.", name);
+                containers.Remove(id);
+                _logger.LogInformation("Container with Id {Id} deleted successfully.", id);
 
-                // 5. Оновлення JSON на Cloudinary
                 await UploadContainersDataAsync(containers);
-
-                // 6. Очікуємо підтвердження оновлення даних
                 var confirmedContainers = await WaitForUpdatedContainersDataAsync(containers);
 
                 _logger.LogInformation("=== DeleteContainer END. ===");
-                // Повертаємо оновлений список контейнерів
-                return Ok(confirmedContainers);
+                return Ok(confirmedContainers.Values.ToList());
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Exception in DeleteContainer for container {Name}", name);
+                _logger.LogError(ex, "Exception in DeleteContainer for Id {Id}", id);
                 return StatusCode(500, "Internal server error in deleting container.");
             }
         }
@@ -272,44 +233,36 @@ namespace ServerDotaMania.Controllers
             _logger.LogInformation("=== GetAllContainers START. ===");
             try
             {
-                // Завантаження поточного списку контейнерів з урахуванням часу для уникнення кешування
                 var containers = await DownloadContainersDataAsync();
                 var httpClient = _httpClientFactory.CreateClient();
                 var containerInfoList = new List<object>();
 
-                foreach (var container in containers)
+                foreach (var container in containers.Values)
                 {
                     string imageBase64 = "";
-                    _logger.LogInformation("Processing container: {Name}, Url: {Url}", container.Name, container.ImageUrl);
-
                     if (!string.IsNullOrEmpty(container.ImageUrl))
                     {
                         try
                         {
-                            _logger.LogInformation("Fetching image for container '{Name}' from URL: {ImageUrl}", container.Name, container.ImageUrl);
                             var imageBytes = await httpClient.GetByteArrayAsync(container.ImageUrl);
                             imageBase64 = Convert.ToBase64String(imageBytes);
-                            _logger.LogInformation("Successfully fetched image for container '{Name}'. Base64 length: {Length}", container.Name, imageBase64.Length);
                         }
                         catch (Exception ex)
                         {
-                            _logger.LogError(ex, "Error fetching image for container '{Name}' from URL: {ImageUrl}", container.Name, container.ImageUrl);
+                            _logger.LogError(ex, "Error fetching image for container Id {Id} from URL: {ImageUrl}", container.Id, container.ImageUrl);
                         }
-                    }
-                    else
-                    {
-                        _logger.LogWarning("Container '{Name}' has no ImageUrl set.", container.Name);
                     }
 
                     containerInfoList.Add(new
                     {
+                        id = container.Id,
                         name = container.Name,
                         description = container.Description,
                         imageBase64
                     });
                 }
 
-                _logger.LogInformation("Returning {Count} containers from GET endpoint.", containerInfoList.Count);
+                _logger.LogInformation("Returning {Count} containers.", containerInfoList.Count);
                 _logger.LogInformation("=== GetAllContainers END. ===");
                 return Ok(containerInfoList);
             }
