@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "QX8DbXkRC3v6sg1AtEt8J0izoky1X9QlBL3dDuG4eDk=",
+  "Hash": "UVgeaKeaU5SK5eE0siSxGEPh2itMKFMmXNq52TyjtT0=",
   "Source": "ServerDotaMania",
   "BasePath": "_content/ServerDotaMania",
   "Mode": "Default",
@@ -10,11 +10,116 @@
     {
       "Name": "ServerDotaMania\\wwwroot",
       "Source": "ServerDotaMania",
-      "ContentRoot": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\wwwroot\\",
+      "ContentRoot": "A:\\Programing\\ServerProjects\\photolibrary-server\\ServerDotaMania\\wwwroot\\",
       "BasePath": "_content/ServerDotaMania",
       "Pattern": "**"
     }
   ],
-  "Assets": [],
-  "Endpoints": []
+  "Assets": [
+    {
+      "Identity": "A:\\Programing\\ServerProjects\\photolibrary-server\\ServerDotaMania\\wwwroot\\test.txt",
+      "SourceId": "ServerDotaMania",
+      "SourceType": "Discovered",
+      "ContentRoot": "A:\\Programing\\ServerProjects\\photolibrary-server\\ServerDotaMania\\wwwroot\\",
+      "BasePath": "_content/ServerDotaMania",
+      "RelativePath": "test#[.{fingerprint}]?.txt",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "5ipweew5fc",
+      "Integrity": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\test.txt"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "test.5ipweew5fc.txt",
+      "AssetFile": "A:\\Programing\\ServerProjects\\photolibrary-server\\ServerDotaMania\\wwwroot\\test.txt",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "0"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 13 Apr 2025 03:53:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5ipweew5fc"
+        },
+        {
+          "Name": "label",
+          "Value": "test.txt"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+        }
+      ]
+    },
+    {
+      "Route": "test.txt",
+      "AssetFile": "A:\\Programing\\ServerProjects\\photolibrary-server\\ServerDotaMania\\wwwroot\\test.txt",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "0"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 13 Apr 2025 03:53:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+        }
+      ]
+    }
+  ]
 }

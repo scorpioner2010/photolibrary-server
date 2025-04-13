@@ -1,12 +1,8 @@
 {
   "Files": [
     {
-      "Id": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\wwwroot\\containers\\sniper\\description.txt",
-      "PackagePath": "staticwebassets\\containers\\sniper\\description.txt"
-    },
-    {
-      "Id": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\wwwroot\\containers\\sniper\\sprite.png",
-      "PackagePath": "staticwebassets\\containers\\sniper\\sprite.png"
+      "Id": "A:\\Programing\\ServerProjects\\photolibrary-server\\ServerDotaMania\\wwwroot\\test.txt",
+      "PackagePath": "staticwebassets\\test.txt"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ServerDotaMania.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
