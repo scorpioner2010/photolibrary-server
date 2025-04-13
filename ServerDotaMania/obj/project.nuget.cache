@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PuXEKfa1OPE=",
+  "dgSpecHash": "QKNuTAs5XZc=",
   "success": true,
-  "projectFilePath": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\ServerDotaMania.csproj",
+  "projectFilePath": "A:\\Programing\\ServerProjects\\photolibrary-server\\ServerDotaMania\\ServerDotaMania.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\TorasDesktop\\.nuget\\packages\\cloudinarydotnet\\1.27.4\\cloudinarydotnet.1.27.4.nupkg.sha512",
     "C:\\Users\\TorasDesktop\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\10.0.0-preview.1.25080.5\\microsoft.extensions.dependencyinjection.10.0.0-preview.1.25080.5.nupkg.sha512",

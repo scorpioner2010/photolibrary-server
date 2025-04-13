@@ -3438,11 +3438,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\ServerDotaMania.csproj",
+      "projectUniqueName": "A:\\Programing\\ServerProjects\\photolibrary-server\\ServerDotaMania\\ServerDotaMania.csproj",
       "projectName": "ServerDotaMania",
-      "projectPath": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\ServerDotaMania.csproj",
+      "projectPath": "A:\\Programing\\ServerProjects\\photolibrary-server\\ServerDotaMania\\ServerDotaMania.csproj",
       "packagesPath": "C:\\Users\\TorasDesktop\\.nuget\\packages\\",
-      "outputPath": "A:\\CodeFolder\\Unity\\dotamaniagithubpages\\dotamania-server\\ServerDotaMania\\ServerDotaMania\\obj\\",
+      "outputPath": "A:\\Programing\\ServerProjects\\photolibrary-server\\ServerDotaMania\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
